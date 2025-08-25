@@ -29,7 +29,10 @@ import type {
 	AdminProductListRequest,
 	UpdateCategoryRequest,
 	OrderParameters,
-	CreateCategoryRequest
+	CreateCategoryRequest,
+	DashboardStatsRequest,
+	ResponseDTO,
+	DashboardStats
 } from 'commercify-api-client';
 import { EnvironmentConfig } from '../env';
 import {
@@ -439,6 +442,13 @@ export class CachedCommercifyApiClient {
 
 				return result;
 			}
+		};
+	}
+
+	get dashboard() {
+		return {
+			stats: async (data: DashboardStatsRequest): Promise<ResponseDTO<DashboardStats>> =>
+				this.client.dashboard.getStats(data)
 		};
 	}
 

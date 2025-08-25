@@ -1,7 +1,7 @@
 services:
   # Commercify API Backend
   commercify-api:
-    image: ghcr.io/zenfulcode/commercifygo:v0.0.6-beta
+    image: ghcr.io/zenfulcode/commercifygo:v2-dev
     ports:
       - '6091:6091'
     environment:
@@ -47,7 +47,7 @@ services:
       - MOBILEPAY_PAYMENT_DESCRIPTION=${MOBILEPAY_PAYMENT_DESCRIPTION:-Commercify Store Purchase}''
 
       # Return URL
-      - RETURN_URL=${RETURN_URL:-http://localhost:3000/payment/complete}
+      - RETURN_URL=${RETURN_URL:-http://localhost:3000/checkout/complete}
       - DEFAULT_CURRENCY=${DEFAULT_CURRENCY:-USD}
     depends_on:
       - postgres

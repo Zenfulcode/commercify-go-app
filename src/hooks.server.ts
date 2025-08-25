@@ -21,7 +21,7 @@ const handleAuth: Handle = async ({ event, resolve }) => {
 			event.locals.user = {
 				email: userResponse.email,
 				name: `${userResponse.firstName} ${userResponse.lastName}`,
-				role: userResponse.role as 'admin'
+				role: userResponse.role
 			};
 		} catch (error) {
 			event.cookies.delete('auth_token', { path: '/' });
