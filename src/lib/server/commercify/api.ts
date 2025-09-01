@@ -29,7 +29,8 @@ import type {
 	AdminProductListRequest,
 	UpdateCategoryRequest,
 	OrderParameters,
-	CreateCategoryRequest
+	CreateCategoryRequest,
+	CreateShippingMethodRequest
 } from 'commercify-api-client';
 import { EnvironmentConfig } from '../env';
 import {
@@ -43,7 +44,8 @@ import {
 	userResponseMapper,
 	orderListSummaryResponseMapper,
 	loginMapper,
-	orderSummaryResponseMapper
+	orderSummaryResponseMapper,
+	shippingMethodResponseMapper,
 } from '$lib/mappers';
 import type { CreateCategoryInput, CreateProductInput, UpdateProductInput } from '$lib/types';
 import { categoryListMapper, categoryResponseMapper } from '$lib/mappers/category.mapper';
@@ -342,7 +344,10 @@ export class CachedCommercifyApiClient {
 				(data: CalculateShippingOptionsRequest) =>
 					this.client.shipping.calculateOptions(data, shippingOptionsListMapper),
 				CACHE_TTL.SHIPPING_METHODS
-			)
+			),
+			createMethod: (data: CreateShippingMethodRequest) => {
+				return this.client.shipping.createMethod(data, shippingMethodResponseMapper);
+			}
 		};
 	}
 
