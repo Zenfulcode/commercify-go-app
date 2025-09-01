@@ -19,18 +19,6 @@
 	} from 'lucide-svelte';
 	import { formatCurrency, formatDate, getOrderStatusColor } from '$lib';
 
-	// Mock data if no server data is available
-	const mockStats = {
-		totalRevenue: 45678.9,
-		revenueChange: 12.5,
-		totalOrders: 234,
-		ordersChange: 8.2,
-		totalProducts: 156,
-		lowStockProducts: 8,
-		totalCustomers: 1247,
-		newCustomers: 23
-	};
-
 	const mockRecentOrders = [
 		{
 			id: '001',
@@ -62,9 +50,11 @@
 		{ name: 'Bluetooth Speaker', sales_count: 23, revenue: 1380.0 }
 	];
 
-	const stats = mockStats;
-	const recentOrders = mockRecentOrders;
-	const topProducts = mockTopProducts;
+	let { data } = $props();
+
+	const stats = data.stats;
+	const recentOrders = data.stats.recentOrders;
+	const topProducts = data.stats.topProducts;
 </script>
 
 <div class="space-y-6">
